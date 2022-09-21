@@ -7,20 +7,27 @@ const app = express();
 app.get('/', (req, res) => {
   res.status(200).json({
     status: 'success',
-    message: '/',
+    message: 'Hello!',
   });
 });
 
 app.get('/students', (req, res) => {
-  res.status(200).json(students);
+  res.status(200).json({
+    status: 'success',
+    data: students,
+  });
 });
 
 app.get('/students/:id', (req, res) => {
   const id = req.params.id;
-  res.status(200).json({
-    message: 'success',
-    data: [students[id - 1]],
-  });
+  if (id > students.length) {
+    res.send(404).json({ status: 'fail', message: '404 Not Found' });
+  } else {
+    res.status(200).json({
+      status: 'success',
+      data: [students[id - 1]],
+    });
+  }
 });
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}...`));
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
