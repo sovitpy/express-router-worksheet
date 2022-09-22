@@ -5,14 +5,14 @@ const PORT = 3001;
 const app = express();
 
 app.get('/', (req, res) => {
-  res.status(200).json({
+  res.json({
     status: 'success',
     message: 'Hello!',
   });
 });
 
 app.get('/students/1', (req, res) => {
-  res.status(200).json({
+  res.json({
     ID: '1',
     Name: 'Senpai',
     Gender: '1',
@@ -38,7 +38,7 @@ app.get('/students/1', (req, res) => {
 });
 
 // app.get('/students', (req, res) => {
-//   res.status(200).json({
+//   res.sendStatus(200).json({
 //     status: 'success',
 //     data: students,
 //   });
@@ -46,10 +46,10 @@ app.get('/students/1', (req, res) => {
 
 // app.get('/students/:id', (req, res) => {
 //   const id = req.params.id;
-//   if (id > students.length) {
-//     res.send(404).json({ status: 'fail', message: '404 Not Found' });
+//   if (isNaN(id) || id > students.length) {
+//     res.json({ status: 'fail', message: '404 Not Found' });
 //   } else {
-//     res.status(200).json({
+//     res.json({
 //       status: 'success',
 //       data: [students[id - 1]],
 //     });
